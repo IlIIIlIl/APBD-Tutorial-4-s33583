@@ -4,7 +4,7 @@ namespace LinqConsoleLab.EN.Exercises;
 
 public sealed class LinqExercises
 {
-    /// <summary>
+    /// <summary>0
     /// Task:
     /// Find all students who live in Warsaw.
     /// Return the index number, full name, and city.
@@ -16,7 +16,9 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task01_StudentsFromWarsaw()
     {
-        throw NotImplemented(nameof(Task01_StudentsFromWarsaw));
+        return UniversityData.Students
+            .Where(s => s.City == "Warsaw")
+            .Select(s => $"{s.IndexNumber} {s.FirstName} {s.LastName} {s.City}");
     }
 
     /// <summary>
@@ -30,7 +32,8 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task02_StudentEmailAddresses()
     {
-        throw NotImplemented(nameof(Task02_StudentEmailAddresses));
+        return UniversityData.Students
+            .Select(s => s.Email);
     }
 
     /// <summary>
@@ -45,7 +48,10 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task03_StudentsSortedAlphabetically()
     {
-        throw NotImplemented(nameof(Task03_StudentsSortedAlphabetically));
+        return UniversityData.Students
+            .OrderBy(s => s.LastName)
+            .ThenBy(s => s.FirstName)
+            .Select(s => $"{s.IndexNumber} {s.FirstName} {s.LastName}");
     }
 
     /// <summary>
@@ -60,7 +66,15 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task04_FirstAnalyticsCourse()
     {
-        throw NotImplemented(nameof(Task04_FirstAnalyticsCourse));
+        var course = UniversityData.Courses
+            .FirstOrDefault(c => c.Category == "Analytics");
+
+        if (course != null)
+        {
+            return [$"{course.Title} {course.StartDate}"];
+        }
+
+        return ["Course not found"];
     }
 
     /// <summary>
@@ -77,7 +91,7 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task05_IsThereAnyInactiveEnrollment()
     {
-        throw NotImplemented(nameof(Task05_IsThereAnyInactiveEnrollment));
+        return [UniversityData.Enrollments.Any(e => !e.IsActive).ToString()];
     }
 
     /// <summary>
@@ -92,7 +106,7 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task06_DoAllLecturersHaveDepartment()
     {
-        throw NotImplemented(nameof(Task06_DoAllLecturersHaveDepartment));
+        return [UniversityData.Lecturers.All(l => !string.IsNullOrEmpty(l.Department)).ToString()];
     }
 
     /// <summary>
@@ -106,7 +120,7 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task07_CountActiveEnrollments()
     {
-        throw NotImplemented(nameof(Task07_CountActiveEnrollments));
+        return [UniversityData.Enrollments.Count(e => e.IsActive).ToString()];
     }
 
     /// <summary>

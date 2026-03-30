@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\APBD\\tut4\\LinqConsoleLab.EN\\LinqConsoleLab.EN.csproj",
+      "projectUniqueName": "D:\\Basic Windows Stuff\\Desktop\\m\\LinqConsoleLab.EN.csproj",
       "projectName": "LinqConsoleLab.EN",
-      "projectPath": "Z:\\APBD\\tut4\\LinqConsoleLab.EN\\LinqConsoleLab.EN.csproj",
+      "projectPath": "D:\\Basic Windows Stuff\\Desktop\\m\\LinqConsoleLab.EN.csproj",
       "packagesPath": "C:\\Users\\Zip\\.nuget\\packages\\",
-      "outputPath": "Z:\\APBD\\tut4\\LinqConsoleLab.EN\\obj\\",
+      "outputPath": "D:\\Basic Windows Stuff\\Desktop\\m\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Zip\\AppData\\Roaming\\NuGet\\NuGet.Config"
