@@ -134,7 +134,10 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task08_DistinctStudentCities()
     {
-        throw NotImplemented(nameof(Task08_DistinctStudentCities));
+        return UniversityData.Students
+            .Select(s => s.City)
+            .Distinct()
+            .OrderBy(c => c);
     }
 
     /// <summary>
@@ -149,7 +152,10 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task09_ThreeNewestEnrollments()
     {
-        throw NotImplemented(nameof(Task09_ThreeNewestEnrollments));
+        return UniversityData.Enrollments
+            .OrderByDescending(e => e.EnrollmentDate)
+            .Take(3)
+            .Select(e => $"{e.EnrollmentDate} {e.StudentId} {e.CourseId}");
     }
 
     /// <summary>
@@ -165,7 +171,11 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task10_SecondPageOfCourses()
     {
-        throw NotImplemented(nameof(Task10_SecondPageOfCourses));
+        return UniversityData.Courses
+            .OrderBy(c => c.Title)
+            .Skip(2)
+            .Take(2)
+            .Select(c => $"{c.Title} {c.Category}");
     }
 
     /// <summary>
@@ -180,7 +190,11 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task11_JoinStudentsWithEnrollments()
     {
-        throw NotImplemented(nameof(Task11_JoinStudentsWithEnrollments));
+        return UniversityData.Students
+            .Join(UniversityData.Enrollments,
+                s => s.Id,
+                e => e.StudentId,
+                (s, e) => $"{s.FirstName} {s.LastName} {e.EnrollmentDate}");
     }
 
     /// <summary>
@@ -196,7 +210,15 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task12_StudentCoursePairs()
     {
-        throw NotImplemented(nameof(Task12_StudentCoursePairs));
+        return UniversityData.Enrollments
+            .Join(UniversityData.Students,
+                e => e.StudentId,
+                s => s.Id,
+                (e, s) => new { s.FirstName, s.LastName, e.CourseId })
+            .Join(UniversityData.Courses,
+                x => x.CourseId,
+                c => c.Id,
+                (x, c) => $"{x.FirstName} {x.LastName} {c.Title}");
     }
 
     /// <summary>
@@ -211,7 +233,13 @@ public sealed class LinqExercises
     /// </summary>
     public IEnumerable<string> Task13_GroupEnrollmentsByCourse()
     {
-        throw NotImplemented(nameof(Task13_GroupEnrollmentsByCourse));
+        return UniversityData.Enrollments
+            .Join(UniversityData.Courses,
+                e => e.CourseId,
+                c => c.Id,
+                (e, c) => c.Title)
+            .GroupBy(title => title)
+            .Select(g => $"{g.Key} {g.Count()}");
     }
 
     /// <summary>
